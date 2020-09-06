@@ -1,0 +1,203 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "flight booker",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "BookFlightIntent",
+                    "slots": [
+                        {
+                            "name": "searchPhrase",
+                            "type": "SEARCH_PHRASE"
+                        },
+                        {
+                            "name": "arrivalCity",
+                            "type": "AMAZON.US_CITY",
+                            "samples": [
+                                "{arrivalCity}"
+                            ]
+                        },
+                        {
+                            "name": "departureDate",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "departureCity",
+                            "type": "AMAZON.US_CITY"
+                        }
+                    ],
+                    "samples": [
+                        "{searchPhrase} a flight on {departureDate} from {departureCity} to {arrivalCity}",
+                        "{searchPhrase} a flight on {departureDate}",
+                        "{searchPhrase} a flight from {departureCity}",
+                        "{arrivalCity}",
+                        "{searchPhrase} a flight from {departureCity} to {arrivalCity} on {departureDate}",
+                        "{searchPhrase}  a flight to {arrivalCity} on {departureDate}",
+                        "{searchPhrase} a flight to {arrivalCity} ",
+                        "{searchPhrase} a flight"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "SEARCH_PHRASE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "tell"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tell me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "recommened"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "give"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "find"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "find me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "recommend me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "book me"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "give me"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "BookFlightIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1018131786033"
+                    },
+                    "slots": [
+                        {
+                            "name": "arrivalCity",
+                            "type": "AMAZON.US_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.25140275074.510781748493"
+                            }
+                        },
+                        {
+                            "name": "departureDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.1018131786033.1389044753535",
+                                "elicitation": "Elicit.Slot.1018131786033.1389044753535"
+                            }
+                        },
+                        {
+                            "name": "departureCity",
+                            "type": "AMAZON.US_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "searchPhrase",
+                            "type": "SEARCH_PHRASE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1018131786033.1389044753535",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What date would you like to fly?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What date would you like to fly to {arrivalCity}"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1018131786033.1389044753535",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Just to confirm, I think you said {departureDate} , right?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "That's {departureDate} , right?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1018131786033",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Gotcha. So you wanna fly from {departureCity} to {arrivalCity} on {departureDate} , correct?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Gotcha. So you wanna fly to {arrivalCity} on {departureDate}, correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.25140275074.510781748493",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What city would you like to fly to?"
+                    }
+                ]
+            }
+        ]
+    }
+}
